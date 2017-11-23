@@ -1,60 +1,63 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>RVTD-Sample</title>
+    <script>
+    </script>  
   </head>
   <body>
-    <h1>hello world</h1>
-    <div class="table">
-      <table border="1" cellpadding="7" cellspacing="7">
-        <tr>
-          <th width="50px">id:</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <!-- <th>Street Address</th> -->
-          <!-- <th>City</th> -->
-          <!-- <th>State</th> -->
-          <!-- <th>Zip</th> -->
-        </tr>
+    <div class="container">
+      <div class="title">
+        <h1>Current Users</h1>
+      </div>
+      <div class="table">
+        <table border="1" cellpadding="7" cellspacing="7">
+          <tr>
+            <th width="50px">id:</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Street Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+          </tr>
 
-        <% if( data.length ){                
-          for(var i=0; i<data.length; i++) { %>
+          <% if( data.length ){                
+            for(var i=0; i< data.length; i++) { %>
+              <tr>
+                <td><%=(i+1)%></td>
+                <td><%=data[i].firstName%></td>
+                <td><%=data[i].lastName%></td>
+                <!-- <td><%=data[i].streetName%></td> -->
+                <!-- <td><%=data[i].city%></td> -->
+                <!-- <td><%=data[i].state%></td> -->
+                <!-- <td><%=data[i].zip%></td> -->
+              </tr>
+            <% }
+            }else{ %>
+              <tr>
+               <td colspan="5">No Data</td>
+              </tr>
+          <% } %>
+        </table> 
+      </div>
+      <div class="user-signup">
+        <form method="post" action="/users" id="signup">
+          <table cellpadding="11">
             <tr>
-              <td><%=(i+1)%></td>
-              <td><%=data[i].firstName%></td>
-              <td><%=data[i].lastName%></td>
-              <!-- <td><%=data[i].streetName%></td> -->
-              <!-- <td><%=data[i].city%></td> -->
-              <!-- <td><%=data[i].state%></td> -->
-              <!-- <td><%=data[i].zip%></td> -->
+              <td class="label">First Name</td><td>: <input type="text" name="firstName"></td>
             </tr>
-          <% }
-          }else{ %>
+  
+             <tr>
+              <td class="label">Last Name</td><td>: <input type="text" name="lastName"></td>
+            </tr>
             <tr>
-             <td colspan="5">No Data</td>
+              <td class="label"></td>
+              <td><input type="submit" value="Save"></td>
             </tr>
-        <% } %>
-      </table> 
+          </table>
+        </form>
+      </div>
     </div>
-    <div class="user-signup">
-      <form method="post" action="/users" id="signup">
-        <table cellpadding="11">
-          <tr>
-            <td class="label">First Name</td><td>: <input type="text" name="firstName"></td>
-          </tr>
-           <tr>
-            <td class="label">Last Name</td><td>: <input type="text" name="lastName"></td>
-          </tr>
-          <tr>
-            <td class="label"></td>
-            <td><input type="submit" value="Save">
-          </td>
-        </table>
-      </form>
-    </div> 
-  <script>
-    // function saveUser(){
-       
-    // }
-  </script>
   </body>
 </html>
