@@ -44,7 +44,7 @@ var usersroute = router.route('/users')
 usersroute.get(function(req, res, next){
   req.getConnection(function(err,conn){
     if (err) return next('cannot connect')
-      var query = conn.query('SELECT * FROM user', function(err,rows){
+      var query = conn.query('SELECT * FROM users', function(err,rows){
       if (err) {
         console.log(err)
         return next("mysql error, check your query")
@@ -81,7 +81,7 @@ usersroute.post(function(req, res, next){
     }
     req.getConnection(function(err,conn){
       if (err) return next('cannot connect')
-        var query = conn.query('INSERT INTO user set ?',data, function(err,rows){
+        var query = conn.query('INSERT INTO users set ?',data, function(err,rows){
         if (err) {
           console.log(err)
           return next("mysql error, check your query")
