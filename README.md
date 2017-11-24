@@ -1,6 +1,6 @@
 
 
-This app was built using: node  -v 8.9.1,
+This node.js app was built using: node  -v 8.9.1,
                           mysql -v 5.7.2.
 See package.json for all other dependencies.
 
