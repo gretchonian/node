@@ -68,7 +68,7 @@ usersroute.post(function(req, res, next){
     var val_errors = req.validationErrors(true)
     if (val_errors) {
       res.status(422).json(val_errors)
-    return
+      return
       
     } else {
       var data = {
