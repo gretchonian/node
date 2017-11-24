@@ -1,18 +1,16 @@
 
 
-This app was built using: node  -v 8.9.1
-                          mysql -v 5.7.2
+This app was built using: node  -v 8.9.1,
+                          mysql -v 5.7.2.
 See package.json for all other dependencies.
 
 ##GET STARTED
 
-Clone from GitHub
-
-then
+clone or download, cd into folder.
 
     npm install
 
-##Mysql Configuration
+##MYSQL CONFIG
 
 server.js
 
@@ -21,25 +19,26 @@ server.js
     password: 'password',
     database: 'rvtd'
 
-##DB Configuration
+##DB CONFIG
 
-database config to mysql has same connection parameters as server.js
+database configuration to mysql has the same connection parameters as those in server.js
 
-create db 'rvtd'
+create db 'rvtd':
 
     node createdb.js
 
-create table 'users'
+create table 'users':
 
     node createtable.js
 
 
+##START APP
 
-##Start 'rvtd'
+in your console:
 
     node .
 
-##Open your browser
+open your browser to:
 
     http://127.0.0.1:3000/users
 
