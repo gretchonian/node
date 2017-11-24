@@ -3,7 +3,6 @@ var bodyParser = require('body-parser')
 var app = express()
 var path = require('path')
 var expressValidator = require('express-validator')
-// var jquery = require('jquery')
 
 const { check, validationResult } = require('express-validator/check')
 
@@ -15,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(bodyParser.json())
 app.use(expressValidator())
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'))
 
 // mysql connection
 var connection = require('express-myconnection')
@@ -29,7 +28,6 @@ app.use(connection(mysql, {
     debug: true
   }, 'request')
 )
-
 
 app.get('/', function(req, res) {
   res.send('welcome')
