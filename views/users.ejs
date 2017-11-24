@@ -2,16 +2,16 @@
 <html>
   <head>
     <title>RVTD-Sample</title>
-    <script>
-    </script>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
-      <div class="title">
+      <div class="jumbotron">
+      <div class="title col-10">
         <h1>Current Users</h1>
       </div>
-      <div class="table">
-        <table border="1" cellpadding="7" cellspacing="7">
+      <div class="table col-10 text-center">
+        <table border="1">
           <tr>
             <th width="50px">id:</th>
             <th>First Name</th>
@@ -21,43 +21,57 @@
             <th>State</th>
             <th>Zip</th>
           </tr>
-
           <% if( data.length ){                
             for(var i=0; i< data.length; i++) { %>
               <tr>
                 <td><%=(i+1)%></td>
                 <td><%=data[i].firstName%></td>
                 <td><%=data[i].lastName%></td>
-                <!-- <td><%=data[i].streetName%></td> -->
-                <!-- <td><%=data[i].city%></td> -->
-                <!-- <td><%=data[i].state%></td> -->
-                <!-- <td><%=data[i].zip%></td> -->
+                <td><%=data[i].streetAddress%></td>
+                <td><%=data[i].city%></td>
+                <td><%=data[i].state%></td>
+                <td><%=data[i].zip%></td>
               </tr>
             <% }
             }else{ %>
               <tr>
-               <td colspan="5">No Data</td>
+               <td>No Data</td>
               </tr>
           <% } %>
         </table> 
       </div>
-      <div class="user-signup">
-        <form method="post" action="/users" id="signup">
+      <br />
+      <div class="user-signup col-10">
+        <p>Enter your information below to sign up as a new user. After you 'Save' your information, verify you have been entered in the bottom row of the Current Users' table.</p>
+        <form method="POST" action="/users" id="signup">
           <table cellpadding="11">
             <tr>
-              <td class="label">First Name</td><td>: <input type="text" name="firstName"></td>
+              <td class="label">First Name</td><td> <input type="text" name="firstName"></td>
             </tr>
   
              <tr>
-              <td class="label">Last Name</td><td>: <input type="text" name="lastName"></td>
+              <td class="label">Last Name</td><td> <input type="text" name="lastName"></td>
+            </tr>
+              <tr>
+              <td class="label">Street Address</td><td> <input type="text" name="streetAddress"></td>
+            </tr>
+              <tr>
+              <td class="label">City</td><td> <input type="text" name="city"></td>
+            </tr>
+              <tr>
+              <td class="label">State</td><td> <input type="text" name="state"></td>
+            </tr>
+            <tr>
+              <td class="label">Zip</td><td> <input type="text" name="zip"></td>
             </tr>
             <tr>
               <td class="label"></td>
-              <td><input type="submit" value="Save"></td>
+              <td><input class="btn btn-primary", type="submit" value="Save", onClick="saveUser()"></td>
             </tr>
           </table>
         </form>
       </div>
+    </div>
     </div>
   </body>
 </html>

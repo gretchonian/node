@@ -1,10 +1,12 @@
-// use 'strict'
 var express = require('express')
 var bodyParser = require('body-parser')
 var app = express()
 var path = require('path')
 var expressValidator = require('express-validator')
+// var jquery = require('jquery')
+
 const { check, validationResult } = require('express-validator/check')
+
 
 app.set('views','./views')
 app.set('view engine', 'ejs')
@@ -13,6 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(bodyParser.json())
 app.use(expressValidator())
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 // mysql connection
 var connection = require('express-myconnection')
@@ -39,7 +42,6 @@ router.use(function(req, res, next) {
   next()
 })
 var usersroute = router.route('/users')
-// var submituser = router.route('/submituser')
 
 usersroute.get(function(req, res, next){
   req.getConnection(function(err,conn){
@@ -49,7 +51,7 @@ usersroute.get(function(req, res, next){
         console.log(err)
         return next("mysql error, check your query")
       }
-      res.render('users',{title:"why is there an error?",data:rows})
+      res.render('users',{data:rows})
     })
   })
 })
@@ -58,33 +60,27 @@ usersroute.post(function(req, res, next){
   console.log(req.body)
 
     //validation
-    req.check('firstName', 'Name is required').notEmpty()
-    // req.assert('firstName','Name is required').notEmpty();
-    // req.assert('email','A valid email is required').isEmail();
-    // req.assert('password','Enter a password 6 - 20').len(6,20);
-
-    // var errors = req.validationErrors();
-    // if(errors){
-    //     res.status(422).json(errors);
-    //     return;
-    // }
-    var errors = req.validationErrors();
-  if (errors) {
-    // res.send(errors);
-    res.status(422).json(errors)
-    return;
-  } else {
-    // normal processing here
-
-    var data = {
-      firstName:req.body.firstName,
-      lastName:req.body.lastName,
-      // streetAddress:req.body.streetAddress,
-      // city:req.body.city,
-      // state:req.body.state,
-      // zip:req.body.zip,
+    req.check('firstName', 'First Name is required').notEmpty()
+    req.check('lastName', 'Last Name is required').notEmpty()
+    req.check('streetAddress', 'Street address is required').notEmpty()
+    req.check('city', 'City is required').notEmpty()
+    req.check('state', 'State is required').notEmpty()
+    req.check('zip', 'Zip is required').notEmpty()
+  
+    var val_errors = req.validationErrors(true)
+    if (val_errors) {
+      res.status(422).json(val_errors)
+    return
+      
+    } else {
+      var data = {
+        firstName:req.body.firstName,
+        lastName:req.body.lastName,
+        streetAddress:req.body.streetAddress,
+        city:req.body.city,
+        state:req.body.state,
+        zip:req.body.zip
     }
-    console.log(data)
     req.getConnection(function(err,conn){
       if (err) return next('cannot connect')
         var query = conn.query('INSERT INTO user set ?',data, function(err,rows){
@@ -98,6 +94,7 @@ usersroute.post(function(req, res, next){
   }
 })
 app.use('/', router)
+
 app.listen(3000,function(){
   console.log('listening to port 3000')
 })
