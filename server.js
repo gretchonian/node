@@ -29,6 +29,7 @@ app.use(connection(mysql, {
   database: 'rvtd'
 }, 'request' ))
 
+//RESTful routes
 var usersroute = router.route('/users')
 //route to users plus data from mysql db
 usersroute.get(function(req, res,next) {
