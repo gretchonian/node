@@ -9,6 +9,7 @@ var express = require('express') //for HTTP requests/routing
   , expressValidator = require('express-validator')
 
 const { check, validationResult } = require('express-validator/check')
+const PORT = process.env.PORT || 3000
 
 //Configuration
 app.set('views', __dirname + '/views') //set directory to views folder (this is the default)
@@ -76,9 +77,10 @@ usersroute.post(function(req, res, next) {
   }
 })
 
-app.get('/', function(req, res,) {
+app.get('/', function(req, res) {
   res.send('welcome')   
 })
 app.use('/',router)
-
-console.log('express server listening on port 3000')
+app.listen(PORT, function (req,res) {
+  console.log('express server listening on port 3000')
+})
