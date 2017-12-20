@@ -15,7 +15,7 @@ conn.connect(function(error){
 
 
 
-  var createdb = 'CREATE DATABASE IF NOT EXISTS rvtd'
+  var createdb = 'CREATE DATABASE IF NOT EXISTS node-sample'
   conn.query(createdb, function(err,res){
       if (err) {
         console.log(err)

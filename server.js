@@ -25,7 +25,7 @@ app.use(connection(mysql, {
   host: 'localhost',
   user: 'mysqluser',
   password: 'password',
-  database: 'rvtd'
+  database: 'node-sample'
 }, 'request' ))
 
 //RESTful routes

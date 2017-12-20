@@ -5,7 +5,7 @@ var conn = mysql.createConnection({
     host: 'localhost',
     user: 'mysqluser',
     password: 'password',
-    database: 'rvtd',
+    database: 'node-sample',
     debug: true
   }, 'request')
 
