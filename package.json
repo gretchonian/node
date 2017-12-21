@@ -1,10 +1,10 @@
 {
-  "name": "rvtd",
+  "name": "node-sample",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "engines": {
-    "node" : "8.9.1"
+    "node": "8.9.1"
   },
   "scripts": {
     "start": "node server.js",
